@@ -140,6 +140,11 @@ venv.bak/
 # mkdocs documentation
 /site
 
+# Project specific
+sb_stuff/
+data/
+*.txt
+
 # mypy
 .mypy_cache/
 .dmypy.json
