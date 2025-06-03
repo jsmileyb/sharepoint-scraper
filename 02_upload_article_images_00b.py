@@ -16,8 +16,6 @@ load_dotenv()
 SERVICE_NOW_BASE = os.getenv("SERVICE_NOW_BASE")
 SERVICE_NOW_ATTACHMENT_API = "api/now/attachment/upload"
 TOKEN = os.getenv("API_KEY")
-TABLE_SYS_ID = os.getenv("TABLE_SYS_ID")
-# TABLE_SYS_ID = os.getenv("TABLE_SYS_ID_DEV")
 HEADERS = {
     "x-sn-apikey": TOKEN
 }
@@ -85,7 +83,7 @@ def upload_images(headers, articles):
                             files = {'file': (os.path.basename(image_path), file_obj, 'application/octet-stream')}
                             data = {
                                 'table_name': 'kb_knowledge',
-                                'table_sys_id': TABLE_SYS_ID  # Temp value, articles not created yet
+                                'table_sys_id': article["sys_id"]  # Use article sys_id
                             }
                             
                             response = requests.post(ATTACHMENT_URL, headers=headers, files=files, data=data)
@@ -132,11 +130,7 @@ def upload_images(headers, articles):
 
 if __name__ == "__main__":
     # Get the path to the article data file from command line or prompt
-    if args.input_file:
-        article_data_path = args.input_file
-    else:
-        article_data_path = input("Enter the path to the article data JSON file: ")
-    
+    article_data_path = args.input_file if args.input_file else input("Enter the path to the article data JSON file: ")
     articles = load_json(article_data_path)
     
     if articles:

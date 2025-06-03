@@ -1,4 +1,3 @@
-
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -260,6 +259,8 @@
         </style>
     </head>
     <body>
+    <!-- Move all <script> tags to just before </body> unless they are required for initial rendering -->
+    <!-- For scripts that do not depend on DOMContentLoaded, add 'defer' or 'async' as appropriate -->
         <!-- Login Modal -->
         <div id="loginModal" class="modal">
             <div class="modal-content">
@@ -5562,6 +5563,8 @@
                 document.getElementById('loginModal').classList.remove('show');
             }
         </script>
+    <!-- Place all <script> tags here, using defer/async where possible -->
+    <!-- Example: <script src="..." defer></script> -->
     </body>
     </html>
     
